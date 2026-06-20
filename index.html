@@ -49,7 +49,7 @@
       text-decoration: none;
     }
 
-  /* Navigation */
+    /* Navigation */
     .nav {
       position: fixed;
       top: 0;
@@ -115,7 +115,7 @@
       transition: var(--transition);
     }
 
-  /* Buttons */
+    /* Buttons */
     .btn-whatsapp {
       display: inline-flex;
       align-items: center;
@@ -144,7 +144,7 @@
       fill: currentColor;
     }
 
-  /* Sections */
+    /* Sections */
     section {
       padding: 5rem 1.5rem;
     }
@@ -167,7 +167,7 @@
       font-size: 1.05rem;
     }
 
-  /* Hero */
+    /* Hero */
     .hero {
       padding-top: 7rem;
       padding-bottom: 5rem;
@@ -212,7 +212,7 @@
       transform: scale(1.03);
     }
 
-  /* Services */
+    /* Services */
     .services {
       background: #fafafa;
     }
@@ -228,12 +228,24 @@
       padding: 2rem 1.5rem;
       border-radius: var(--radius);
       border: 1px solid var(--border);
-      transition: transform var(--transition), box-shadow var(--transition);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .service-card.whatsapp-card {
+      cursor: pointer;
     }
 
     .service-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow);
+    }
+
+    .service-card.whatsapp-card:hover {
+      border-color: var(--green);
+    }
+
+    .service-card.whatsapp-card:active {
+      transform: translateY(-2px);
     }
 
     .service-icon {
@@ -285,7 +297,7 @@
       filter: brightness(0.92);
     }
 
-  /* About */
+    /* About */
     .about {
       background: #fafafa;
     }
@@ -300,7 +312,7 @@
       margin-bottom: 1rem;
     }
 
-  /* Contact */
+    /* Contact */
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -338,7 +350,7 @@
       color: var(--green);
     }
 
-  /* Footer */
+    /* Footer */
     .footer {
       padding: 2rem 1.5rem;
       text-align: center;
@@ -347,7 +359,7 @@
       font-size: 0.875rem;
     }
 
-  /* Floating WhatsApp */
+    /* Floating WhatsApp */
     .whatsapp-float {
       position: fixed;
       bottom: 1.5rem;
@@ -382,7 +394,7 @@
       50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.8); }
     }
 
-  /* Responsive */
+    /* Responsive */
     @media (max-width: 900px) {
       .hero-grid {
         grid-template-columns: 1fr;
@@ -492,28 +504,33 @@
   <section class="services" id="services">
     <div class="container">
       <h2 class="section-title">Our Services</h2>
-      <p class="section-subtitle">Professional photography and videography for every occasion.</p>
+      <p class="section-subtitle">Tap a service to enquire on WhatsApp.</p>
       <div class="services-grid">
-        <div class="service-card">
+
+        <div class="service-card whatsapp-card" data-message="Hi, I am interested in Wedding Photography. Please share details and pricing.">
           <div class="service-icon">💍</div>
           <h3>Wedding Photography</h3>
           <p>Full-day coverage capturing every smile, tear, and celebration of your special day.</p>
         </div>
-        <div class="service-card">
+
+        <div class="service-card whatsapp-card" data-message="Hi, I am interested in a Pre-Wedding Shoot. Please share details and pricing.">
           <div class="service-icon">📸</div>
           <h3>Pre-Wedding Shoots</h3>
           <p>Romantic, creative sessions at stunning locations to tell your love story.</p>
         </div>
-        <div class="service-card">
+
+        <div class="service-card whatsapp-card" data-message="Hi, I am interested in Event Photography. Please share details and pricing.">
           <div class="service-icon">🎉</div>
           <h3>Event Photography</h3>
           <p>Corporate events, birthdays, and celebrations documented with precision and flair.</p>
         </div>
-        <div class="service-card">
+
+        <div class="service-card whatsapp-card" data-message="Hi, I am interested in Videography services. Please share details and pricing.">
           <div class="service-icon">🎬</div>
           <h3>Videography</h3>
           <p>Cinematic films and highlight reels that bring your memories to life.</p>
         </div>
+
       </div>
     </div>
   </section>
@@ -528,7 +545,7 @@
           <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="Wedding photography">
         </div>
         <div class="portfolio-item">
-          <img src="https://images.unsplash.com/photo-1606216794074-58e23c3fe716?w=600&q=80" alt="Pre-wedding shoot">
+          <img src="https://www.shaadidukaan.com/vogue/wp-content/uploads/2025/03/Pre-wedding-Photoshoot-Poses-Featured-Photo.jpg" alt="Pre-wedding shoot">
         </div>
         <div class="portfolio-item">
           <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=80" alt="Event photography">
@@ -537,7 +554,7 @@
           <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80" alt="Couple portrait">
         </div>
         <div class="portfolio-item">
-          <img src="https://images.unsplash.com/photo-1519225421980-715b02113035?w=600&q=80" alt="Wedding ceremony">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL_ybqyw4Nlmaj1HKSB9zNoGBUmtpmt23DfA&s" alt="Wedding ceremony">
         </div>
         <div class="portfolio-item">
           <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=80" alt="Outdoor photography">
@@ -581,7 +598,7 @@
 
   <!-- Footer -->
   <footer class="footer">
-  <p>&copy; 2026 Lens & Light Studio. All rights reserved.</p>
+    <p>&copy; 2026 Lens & Light Studio. All rights reserved.</p>
   </footer>
 
   <!-- Floating WhatsApp Button -->
@@ -592,12 +609,27 @@
   <script>
     // WhatsApp configuration — update your number here
     const WHATSAPP_NUMBER = '919384649323';
-    const WHATSAPP_MESSAGE = 'Hi I am interested in your photography services';
-    const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+    const DEFAULT_MESSAGE = 'Hi I am interested in your photography services';
 
-    // Set WhatsApp links
+    function openWhatsApp(message) {
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    // Hero + floating button → generic message
     document.querySelectorAll('.whatsapp-link').forEach(link => {
-      link.href = WHATSAPP_URL;
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        openWhatsApp(DEFAULT_MESSAGE);
+      });
+    });
+
+    // Service cards → service-specific message
+    document.querySelectorAll('.whatsapp-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const message = card.dataset.message || DEFAULT_MESSAGE;
+        openWhatsApp(message);
+      });
     });
 
     // Sticky nav shadow on scroll
@@ -614,14 +646,13 @@
       navLinks.classList.toggle('open');
     });
 
-    // Close mobile menu on link click
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('open');
       });
     });
 
-    // Smooth scroll for anchor links (fallback for browsers without CSS scroll-behavior)
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         const targetId = this.getAttribute('href');
