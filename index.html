@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lens & Light Studio | Photography</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #5c5c5c;
+      --green: #25d366;
+      --green-dark: #1ebe57;
+      --border: #e8e8e8;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      --radius: 12px;
+      --transition: 0.25s ease;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+  /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow var(--transition);
+    }
+
+    .nav.scrolled {
+      box-shadow: var(--shadow);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.125rem;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      margin: 5px 0;
+      transition: var(--transition);
+    }
+
+  /* Buttons */
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--green);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.875rem 1.5rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+    }
+
+    .btn-whatsapp:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+    }
+
+    .btn-whatsapp svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+  /* Sections */
+    section {
+      padding: 5rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+    }
+
+  /* Hero */
+    .hero {
+      padding-top: 7rem;
+      padding-bottom: 5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.25rem, 5vw, 3.25rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-tagline {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 480px;
+    }
+
+    .hero-image {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .hero-image:hover img {
+      transform: scale(1.03);
+    }
+
+  /* Services */
+    .services {
+      background: #fafafa;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--bg);
+      padding: 2rem 1.5rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(37, 211, 102, 0.12);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+  /* Portfolio */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .portfolio-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      cursor: pointer;
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.06);
+      filter: brightness(0.92);
+    }
+
+  /* About */
+    .about {
+      background: #fafafa;
+    }
+
+    .about-content {
+      max-width: 720px;
+    }
+
+    .about-content p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+    }
+
+  /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .contact-card {
+      padding: 2rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .contact-card:hover {
+      border-color: var(--green);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-card h3 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-card p,
+    .contact-card a {
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+
+    .contact-card a:hover {
+      color: var(--green);
+    }
+
+  /* Footer */
+    .footer {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+  /* Floating WhatsApp */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 200;
+      width: 56px;
+      height: 56px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+      transition: transform var(--transition), background var(--transition);
+      animation: pulse 2s infinite;
+    }
+
+    .whatsapp-float:hover {
+      background: var(--green-dark);
+      transform: scale(1.1);
+      animation: none;
+    }
+
+    .whatsapp-float svg {
+      width: 28px;
+      height: 28px;
+      fill: #fff;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5); }
+      50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.8); }
+    }
+
+  /* Responsive */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero-image img {
+        height: 300px;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1rem;
+        border-bottom: 1px solid var(--border);
+        transform: translateY(-120%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform var(--transition), opacity var(--transition);
+      }
+
+      .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 4rem 1.25rem;
+      }
+
+      .section-title {
+        font-size: 1.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">Lens & Light Studio</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <h1>Lens & Light Studio</h1>
+        <p class="hero-tagline">Capturing your most precious moments with artistry, emotion, and timeless elegance.</p>
+        <a href="#" class="btn-whatsapp whatsapp-link" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.635a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book Now on WhatsApp
+        </a>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80" alt="Professional photography session">
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services" id="services">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">Professional photography and videography for every occasion.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">💍</div>
+          <h3>Wedding Photography</h3>
+          <p>Full-day coverage capturing every smile, tear, and celebration of your special day.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📸</div>
+          <h3>Pre-Wedding Shoots</h3>
+          <p>Romantic, creative sessions at stunning locations to tell your love story.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎉</div>
+          <h3>Event Photography</h3>
+          <p>Corporate events, birthdays, and celebrations documented with precision and flair.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎬</div>
+          <h3>Videography</h3>
+          <p>Cinematic films and highlight reels that bring your memories to life.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <h2 class="section-title">Portfolio</h2>
+      <p class="section-subtitle">A glimpse of our recent work.</p>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="Wedding photography">
+        </div>
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1606216794074-58e23c3fe716?w=600&q=80" alt="Pre-wedding shoot">
+        </div>
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=80" alt="Event photography">
+        </div>
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80" alt="Couple portrait">
+        </div>
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1519225421980-715b02113035?w=600&q=80" alt="Wedding ceremony">
+        </div>
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=80" alt="Outdoor photography">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container">
+      <h2 class="section-title">About Us</h2>
+      <div class="about-content">
+        <p>Lens & Light Studio is a boutique photography studio founded with a passion for storytelling through images. With over 8 years of experience, we specialize in weddings, pre-wedding shoots, events, and cinematic videography.</p>
+        <p>Our team believes every moment deserves to be captured beautifully. We combine technical expertise with a creative eye to deliver photographs and films that you'll cherish for a lifetime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact Us</h2>
+      <p class="section-subtitle">We'd love to hear about your upcoming project.</p>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Phone</h3>
+          <a href="tel:+919876543210">+91 6374399323</a>
+        </div>
+        <div class="contact-card">
+          <h3>Email</h3>
+          <a href="mailto:hello@lensandlight.com">hello@lensandlight.com</a>
+        </div>
+        <div class="contact-card">
+          <h3>Address</h3>
+          <p>42 Creative Lane, Bandra West<br>Mumbai, Maharashtra 400050</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+  <p>&copy; 2026 Lens & Light Studio. All rights reserved.</p>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="#" class="whatsapp-float whatsapp-link" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.635a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script>
+    // WhatsApp configuration — update your number here
+    const WHATSAPP_NUMBER = '916374399323';
+    const WHATSAPP_MESSAGE = 'Hi I am interested in your photography services';
+    const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+
+    // Set WhatsApp links
+    document.querySelectorAll('.whatsapp-link').forEach(link => {
+      link.href = WHATSAPP_URL;
+    });
+
+    // Sticky nav shadow on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // Smooth scroll for anchor links (fallback for browsers without CSS scroll-behavior)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
